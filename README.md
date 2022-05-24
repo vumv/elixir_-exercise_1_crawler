@@ -24,4 +24,6 @@ nên code đã thay thế bằng trang "https://vnphimmoi.com/phim-bo/"
 
 
 file chính code: https://github.com/vumv/elixir_-exercise_1_crawler/blob/main/lib/crawler.ex
+
+
 Run bằng hàm: Crawler.run trong command line
