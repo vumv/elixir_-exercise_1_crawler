@@ -1,5 +1,5 @@
 {application,crawler,
-             [{applications,[kernel,stdlib,elixir,logger,crawly,floki,json]},
+             [{applications,[kernel,stdlib,elixir,logger]},
               {description,"crawler"},
               {modules,['Elixir.Crawler']},
               {registered,[]},
