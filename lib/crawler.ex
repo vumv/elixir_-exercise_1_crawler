@@ -40,6 +40,15 @@ defmodule Crawler do
     end
   end
 
+  def get_short_title_and_year(full_title) do
+    year = full_title|>String.split("(")|> List.last()|>String.trim(" ")|>String.trim(")")|>String.trim(" ")
+    case Integer.parse(year) do
+      {year_value, ""} -> { full_title|>String.split("-")|> List.first()|>String.trim(" "),year_value}
+      _ -> { full_title|>String.split("-")|> List.first()|>String.trim(" "), 0}
+    end
+
+ end
+
   def recursive_parse_page(in_page_url, in_already_items, in_start_page) do
     # print the current url
     IO.puts(in_page_url)
@@ -74,13 +83,14 @@ defmodule Crawler do
 
             full_series = get_full_series(episode_info_text)
             number_of_episode = get_current_episode(episode_info_text)
-
+            {short_title, year} = String.split(title, "\n") |> List.first() |> String.trim("\t")|>get_short_title_and_year()
             %{
-              title: String.split(title, "\n") |> List.first() |> String.trim("\t"),
+              title: short_title,
               link: href,
               thumbnail: image,
               number_of_episode: number_of_episode,
               full_series: full_series,
+              year: year,
               reading_page: in_start_page
             }
         end)
